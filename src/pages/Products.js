@@ -20,7 +20,7 @@ const Products = () => {
     const getProducts = async () => {
         try {
             const res = await axios
-                .get("http://localhost:3000/api/products", {
+                .get("https://lengtith.onrender.com/api/products", {
                     withCredentials: true,
                 })
                 .catch((err) => console.log(err));
