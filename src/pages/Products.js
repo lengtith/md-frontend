@@ -20,7 +20,7 @@ const Products = () => {
     const getProducts = async () => {
         try {
             const res = await axios
-                .get("https://lengtith.onrender.com/api/products", {
+                .get("http://localhost:3000/api/products", {
                     withCredentials: true,
                 })
                 .catch((err) => console.log(err));
@@ -106,7 +106,7 @@ const Products = () => {
                 <h3>Product</h3>
                 <form action="" onSubmit={handleSubmit}>
                     <div className='flex flex-col gap-2.5'>
-                        <input className='border' type="text" name="title" id="" value={product.title} onChange={handleChange} />
+                        <input className='border' type="text" name="title" id="" required value={product.title} onChange={handleChange} />
                         <input className='border' type="number" name="quantity" id="" required value={product.quantity} onChange={handleChange} />
                         <input className='border' type="number" name="price" id="" required value={product.price} onChange={handleChange} />
                         <input className='border' type="file" name="thumbnail" id="" onChange={handleThumbnailChange} />

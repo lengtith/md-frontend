@@ -15,7 +15,7 @@ const Login = () => {
     };
     const handleLogin = async () => {
         try {
-            const res = await axios.post('https://lengtith.onrender.com/api/auth/login', { ...auth }).catch(err => console.log(err));
+            const res = await axios.post('http://localhost:3000/api/auth/login', { ...auth }).catch(err => console.log(err));
             const data = await res.data;
             return data;
         } catch (error) {

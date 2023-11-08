@@ -10,7 +10,7 @@ function App() {
   const history = useNavigate();
   const handleLogout = async () => {
     try {
-      const res = await axios.post('https://lengtith.onrender.com/api/auth/logout', {
+      const res = await axios.post('http://localhost:3000/api/auth/logout', {
         withCredentials: true,
       });
 
