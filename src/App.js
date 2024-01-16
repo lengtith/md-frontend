@@ -15,7 +15,7 @@ function App() {
       });
 
       if (res.status === 200) {
-        return history("/login");
+        return history("/");
       }
     } catch (error) {
       return new Error("Unable TO Logout. Please try again");
@@ -26,11 +26,11 @@ function App() {
     <div className="container mx-auto max-w-lg">
       <div className="flex items-center justify-between bg-gray-300 p-5 mb-5">
         <div className="flex gap-4">
-          <Link to='/'>Welcome</Link>
+          <Link to='/home'>Welcome</Link>
           <Link to='/products'>Products</Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link to='/login'>Login</Link>
+          <Link to='/'>Login</Link>
           <button className="px-3 py-2 rounded-lg bg-red-600 text-white" onClick={handleLogout}>Logout</button>
         </div>
       </div>
