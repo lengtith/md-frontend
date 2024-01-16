@@ -35,8 +35,8 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route index path="/" element={<Welcome />} />
-        <Route path="/login" element={<Login />} />
+        <Route index path="/" element={<Login />} />
+        <Route path="/home" element={<Welcome />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:slug" element={<ProductUpdate />} />
       </Routes>
