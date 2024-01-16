@@ -20,7 +20,7 @@ const Products = () => {
     const getProducts = async () => {
         try {
             const res = await axios
-                .get("http://localhost:3000/api/fashions", {
+                .get("https://lengtith.onrender.com/api/fashions?page=1&limit=12", {
                     withCredentials: true,
                 })
                 .catch((err) => console.log(err));
@@ -36,6 +36,35 @@ const Products = () => {
             getProducts();
             firstRender = false;
         }
+
+        const getUser = async () => {
+            try {
+                const res = await axios
+                    .get("https://lengtith.onrender.com/api/users/user", {
+                        withCredentials: true,
+                    })
+                    .catch((err) => console.log(err));
+                console.log(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        const getUserinfo = async () => {
+            try {
+                const res = await axios
+                    .get("https://lengtith.onrender.com/api/users/info", {
+                        withCredentials: true,
+                    })
+                    .catch((err) => console.log(err));
+                console.log(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getUser();
+        getUserinfo();
     }, [])
 
     const handleChange = (event) => {
@@ -77,7 +106,7 @@ const Products = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:3000/api/fashions', formData).catch(err => console.log(err));
+            const res = await axios.post('https://lengtith.onrender.com/api/fashions', formData).catch(err => console.log(err));
             const data = await res.data;
             if (res.status === 400 || res.status === 401) {
                 return `${data.error}`;
@@ -90,10 +119,21 @@ const Products = () => {
 
     const handleRemove = async (id) => {
         try {
-            const res = await axios.delete('http://localhost:3000/api/fashions/' + id).catch(err => console.log(err));
+            const res = await axios.delete('https://lengtith.onrender.com/api/fashions/' + id).catch(err => console.log(err));
             if (res.status === 400 || res.status === 401) {
                 return `${res.data.error}`;
             }
+            return res.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const handleFavorite = async (id) => {
+        try {
+            const res = await axios.post('https://lengtith.onrender.com/api/favorites/', { product: id })
+                .catch(err => console.log(err));
+
             return res.data;
         } catch (error) {
             console.error(error);
@@ -122,15 +162,17 @@ const Products = () => {
                             <div key={index}>
                                 <h5>{product.title}</h5>
                                 <div className='flex justify-between border-2 border-red-600 rounded-lg p-1'>
-                                    {/* <div key={index} className='w-fit flex gap-2'>
+                                    <div key={index} className='w-fit flex gap-2'>
                                         {product.images.map((previewImage, index) => (
-                                            <img src={`https://lengtith.onrender.com/uploads/` + previewImage} className='w-10 h-10 object-contain object-center' alt={`Preview ${index + 1}`} />
+                                            <img key={index} src={`https://lengtith.onrender.com/uploads/products/` + previewImage} className='w-10 h-10 object-contain object-center' alt={`Preview ${index + 1}`} />
                                         ))}
-                                    </div> */}
+                                    </div>
                                     <div>
-                                        <Link to={`/products/${product._id}`} className='text-yellow-500 text-xs'>Edit</Link>
+                                        <Link to={`/products/${product.slug}`} className='text-yellow-500 text-xs'>Edit</Link>
                                         <span> / </span>
                                         <button onClick={() => handleRemove(product._id)} className='text-red-600 text-xs'>Remove</button>
+                                        <span> / </span>
+                                        <button onClick={() => handleFavorite(product._id)} className='text-red-600 text-xs'>Love</button>
                                     </div>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ function App() {
   const history = useNavigate();
   const handleLogout = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/logout', {
+      const res = await axios.post('https://lengtith.onrender.com/api/auth/logout', {
         withCredentials: true,
       });
 
@@ -38,7 +38,7 @@ function App() {
         <Route index path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductUpdate />} />
+        <Route path="/products/:slug" element={<ProductUpdate />} />
       </Routes>
       <div className='flex flex-col gap-5'>
       </div>

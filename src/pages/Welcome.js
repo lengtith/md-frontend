@@ -8,7 +8,7 @@ const Welcome = () => {
     
     const refreshToken = async () => {
         const res = await axios
-            .post("http://localhost:3000/api/refresh-token", {
+            .post("https://lengtith.onrender.com/api/refresh-token", {
                 withCredentials: true,
             })
             .catch((err) => console.log(err.message));

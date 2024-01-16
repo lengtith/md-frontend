@@ -5,17 +5,17 @@ axios.defaults.withCredentials = true;
 let firstRender = true;
 
 const ProductUpdate = () => {
-    const { id } = useParams();
+    const { slug } = useParams();
     const [selectedImages, setSelectedImages] = useState([]);
     const [previewImages, setPreviewImages] = useState([]);
     const [product, setProduct] = useState({
         title: "", slug: "", price: 0, images: [],
     })
 
-    const getProduct = async (id) => {
+    const getProduct = async (slug) => {
         try {
             const res = await axios
-                .get("http://localhost:3000/api/fashions/" + id, {
+                .get("https://lengtith.onrender.com/api/fashions/" + slug, {
                     withCredentials: true,
                 })
                 .catch((err) => console.log(err));
@@ -28,10 +28,10 @@ const ProductUpdate = () => {
 
     useEffect(() => {
         if (firstRender) {
-            getProduct(id);
+            getProduct(slug);
             firstRender = false;
         }
-    }, [id])
+    }, [slug])
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -59,7 +59,7 @@ const ProductUpdate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData();
         formData.append('title', product.title);
         formData.append('slug', product.slug);
@@ -73,7 +73,7 @@ const ProductUpdate = () => {
         }
 
         try {
-            const response = await axios.put('http://localhost:3000/api/fashions/' + id, formData);
+            const response = await axios.put('https://lengtith.onrender.com/api/fashions/' + slug, formData);
 
             if (response.status === 200) {
                 // Handle success
@@ -119,7 +119,7 @@ const ProductUpdate = () => {
                             <div className='flex gap-2'>
                                 {product.images.map((image, index) => (
                                     <div key={index} className='relative w-fit border-2 border-red-600 rounded-lg p-1'>
-                                        <img src={`http://localhost:3000/uploads/products/${image}`} alt="" className='w-10 h-10 object-cover' />
+                                        <img src={`https://lengtith.onrender.com/uploads/products/${image}`} alt="" className='w-10 h-10 object-cover' />
                                         <button onClick={() => handleRemoveProductImage(index)} className='absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-red-600 text-white text-xs'>x</button>
                                     </div>
                                 ))}
