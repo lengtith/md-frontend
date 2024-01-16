@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 axios.defaults.withCredentials = true;
 
 const Welcome = () => {
@@ -17,11 +17,11 @@ const Welcome = () => {
         return console.log(data);
     };
 
-    useEffect(() => {
-        return () => {
-            refreshToken();
-        };
-    }, []);
+    // useEffect(() => {
+    //     return () => {
+    //         refreshToken();
+    //     };
+    // }, []);
     return (
         <>
             <div

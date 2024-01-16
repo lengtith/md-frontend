@@ -26,7 +26,7 @@ function App() {
     <div className="container mx-auto max-w-lg">
       <div className="flex items-center justify-between bg-gray-300 p-5 mb-5">
         <div className="flex gap-4">
-          <Link to='/home'>Welcome</Link>
+          <Link to='/'>Welcome</Link>
           <Link to='/products'>Products</Link>
         </div>
         <div className="flex items-center gap-4">
@@ -35,8 +35,8 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route index path="/" element={<Login />} />
-        <Route path="/home" element={<Welcome />} />
+        <Route index path="/" element={<Welcome />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:slug" element={<ProductUpdate />} />
       </Routes>
